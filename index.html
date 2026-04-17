@@ -847,14 +847,10 @@
                 <p>Once you submit the form, we'll send you a confirmation email with a simple checklist of the information we need. As soon as we have everything, your 5-day turnaround begins.</p>
                 <div class="contact-detail">
                     <div class="contact-detail-icon">&#9993;</div>
-                    <span>hello@evtransition.co.uk</span>
-                </div>
-                <div class="contact-detail">
-                    <div class="contact-detail-icon">&#128222;</div>
-                    <span>07XXX XXX XXX</span>
+                    <span>angus@evtransition.uk</span>
                 </div>
             </div>
-            <form class="contact-form" onsubmit="handleSubmit(event)">
+            <form class="contact-form" action="https://formspree.io/f/angus@evtransition.uk" method="POST">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="name">Full Name</label>
@@ -865,15 +861,9 @@
                         <input type="email" id="email" name="email" required>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="phone">Phone (optional)</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="postcode">Postcode</label>
-                        <input type="text" id="postcode" name="postcode" required>
-                    </div>
+                <div class="form-group">
+                    <label for="postcode">Postcode</label>
+                    <input type="text" id="postcode" name="postcode" required>
                 </div>
                 <div class="form-group">
                     <label for="property">Property Type</label>
@@ -932,19 +922,32 @@
         });
     });
 
-    // Form submit
-    function handleSubmit(e) {
+    // Form submit — Formspree handles delivery, we show a thank-you message
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
         e.preventDefault();
-        const form = e.target;
+        const form = this;
         const btn = form.querySelector('button[type="submit"]');
         btn.textContent = 'Sending...';
         btn.disabled = true;
 
-        // Simulate — replace with real form handler (e.g. Formspree, Netlify Forms, Google Forms)
-        setTimeout(() => {
-            form.innerHTML = '<div style="text-align:center;padding:2rem 0;"><h3 style="color:#2d6a4f;margin-bottom:0.5rem;">Thank you!</h3><p style="color:#555;">We\'ll be in touch within 24 hours to get your assessment started.</p></div>';
-        }, 1000);
-    }
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                form.innerHTML = '<div style="text-align:center;padding:2rem 0;"><h3 style="color:#2d6a4f;margin-bottom:0.5rem;">Thank you!</h3><p style="color:#555;">We\'ll be in touch within 24 hours to get your assessment started.</p></div>';
+            } else {
+                btn.textContent = 'Request My Assessment';
+                btn.disabled = false;
+                alert('Something went wrong. Please try again or email us directly.');
+            }
+        }).catch(() => {
+            btn.textContent = 'Request My Assessment';
+            btn.disabled = false;
+            alert('Something went wrong. Please try again or email us directly.');
+        });
+    });
 </script>
 
 </body>
