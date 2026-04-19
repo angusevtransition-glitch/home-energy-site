@@ -656,7 +656,7 @@
     <h1>Stop overpaying for energy. Get a <em>personalised report</em> that shows you how.</h1>
     <p>We analyse your energy data and home setup to find savings — from smarter tariffs to solar, batteries and EV charging.</p>
     <div>
-        <a href="#contact" class="btn btn-primary">Book Your Assessment</a>
+        <a href="#contact" class="btn btn-primary">Join the Waitlist</a>
         <a href="#how-it-works" class="btn btn-outline">Learn More</a>
     </div>
 </section>
@@ -777,7 +777,7 @@
                 <li>Clear, jargon-free written report (PDF)</li>
                 <li>30-minute follow-up call to discuss findings</li>
             </ul>
-            <a href="#contact" class="btn btn-primary" style="width:100%;">Book Your Assessment</a>
+            <a href="#contact" class="btn btn-primary" style="width:100%;">Join the Waitlist</a>
         </div>
     </div>
 </section>
@@ -831,69 +831,43 @@
 <!-- CTA -->
 <section class="cta">
     <h2>Ready to take control of your energy costs?</h2>
-    <p>Book your personalised assessment today and find out exactly where you could be saving.</p>
-    <a href="#contact" class="btn btn-white">Book Your Assessment — £275</a>
+    <p>Join the waitlist for your personalised assessment and we'll be in touch soon to get started.</p>
+    <a href="#contact" class="btn btn-white">Join the Waitlist</a>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
     <div class="container">
         <p class="section-label">Get Started</p>
-        <h2 class="section-title">Book your assessment</h2>
-        <p class="section-subtitle">Fill in the form below and we'll be in touch within 24 hours to get started.</p>
+        <h2 class="section-title">Join the waitlist</h2>
+        <p class="section-subtitle">Like a bespoke home energy transition assessment? Join the waitlist by submitting your contact details below. We'll reach out with what we need from you to kick things off soon.</p>
         <div class="contact-grid">
             <div class="contact-info">
                 <h3>What happens next?</h3>
-                <p>Once you submit the form, we'll send you a confirmation email with a simple checklist of the information we need. As soon as we have everything, your 5-day turnaround begins.</p>
+                <p>Once you submit the form, we'll save your spot on the waitlist and email you shortly with the details we need to start your assessment.</p>
                 <div class="contact-detail">
                     <div class="contact-detail-icon">&#9993;</div>
                     <span>angus@evtransition.uk</span>
                 </div>
             </div>
-            <form class="contact-form" action="https://formspree.io/f/angus@evtransition.uk" method="POST">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
+            <form class="contact-form" action="https://formspree.io/f/xrerlego" method="POST">
+                <input type="hidden" name="_subject" value="New home energy waitlist signup">
+                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none !important;">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="postcode">Postcode</label>
-                    <input type="text" id="postcode" name="postcode" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label for="property">Property Type</label>
-                    <select id="property" name="property" required>
-                        <option value="" disabled selected>Select...</option>
-                        <option>Detached house</option>
-                        <option>Semi-detached house</option>
-                        <option>Terraced house</option>
-                        <option>Bungalow</option>
-                        <option>Flat / Apartment</option>
-                        <option>Other</option>
-                    </select>
+                    <label for="phone">Contact Number <span style="font-weight:400;color:var(--grey);">(optional)</span></label>
+                    <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel">
                 </div>
-                <div class="form-group">
-                    <label for="interest">What are you most interested in?</label>
-                    <select id="interest" name="interest">
-                        <option value="" disabled selected>Select...</option>
-                        <option>Reducing my energy bills</option>
-                        <option>Solar panels</option>
-                        <option>Battery storage</option>
-                        <option>EV charging</option>
-                        <option>Tariff advice</option>
-                        <option>All of the above</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Anything else we should know?</label>
-                    <textarea id="message" name="message" placeholder="E.g. I already have solar, I'm getting an EV next month, etc."></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width:100%;">Request My Assessment</button>
+                <div class="form-error" role="alert" style="display:none;color:#c0392b;font-size:0.9rem;"></div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Join the Waitlist</button>
+                <p style="font-size:0.8rem;color:var(--grey);line-height:1.5;margin-top:-0.25rem;">By submitting, you agree we'll use your details solely to contact you about your home energy assessment. We won't share them with third parties. Email <a href="mailto:angus@evtransition.uk" style="color:var(--green);">angus@evtransition.uk</a> to update or remove your details at any time.</p>
             </form>
         </div>
     </div>
@@ -927,8 +901,17 @@
         e.preventDefault();
         const form = this;
         const btn = form.querySelector('button[type="submit"]');
+        const err = form.querySelector('.form-error');
+        err.style.display = 'none';
         btn.textContent = 'Sending...';
         btn.disabled = true;
+
+        const showError = () => {
+            btn.textContent = 'Join the Waitlist';
+            btn.disabled = false;
+            err.innerHTML = 'Something went wrong. Please try again, or email <a href="mailto:angus@evtransition.uk" style="color:#c0392b;text-decoration:underline;">angus@evtransition.uk</a> directly.';
+            err.style.display = 'block';
+        };
 
         fetch(form.action, {
             method: 'POST',
@@ -936,17 +919,11 @@
             headers: { 'Accept': 'application/json' }
         }).then(response => {
             if (response.ok) {
-                form.innerHTML = '<div style="text-align:center;padding:2rem 0;"><h3 style="color:#2d6a4f;margin-bottom:0.5rem;">Thank you!</h3><p style="color:#555;">We\'ll be in touch within 24 hours to get your assessment started.</p></div>';
+                form.innerHTML = '<div style="text-align:center;padding:2rem 0;"><h3 style="color:#2d6a4f;margin-bottom:0.5rem;">You\'re on the waitlist!</h3><p style="color:#555;">We\'ll be in touch shortly with what we need to kick things off.</p></div>';
             } else {
-                btn.textContent = 'Request My Assessment';
-                btn.disabled = false;
-                alert('Something went wrong. Please try again or email us directly.');
+                showError();
             }
-        }).catch(() => {
-            btn.textContent = 'Request My Assessment';
-            btn.disabled = false;
-            alert('Something went wrong. Please try again or email us directly.');
-        });
+        }).catch(showError);
     });
 </script>
 

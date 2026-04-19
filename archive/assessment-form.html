@@ -1,0 +1,67 @@
+<!--
+    Archived 2026-04-19. Original full assessment booking form from index.html.
+    Replaced with a short waitlist form while the £275 assessment is paused.
+    To restore, drop the <section id="contact"> below back into index.html in place of the waitlist section.
+-->
+<section id="contact">
+    <div class="container">
+        <p class="section-label">Get Started</p>
+        <h2 class="section-title">Book your assessment</h2>
+        <p class="section-subtitle">Fill in the form below and we'll be in touch within 24 hours to get started.</p>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>What happens next?</h3>
+                <p>Once you submit the form, we'll send you a confirmation email with a simple checklist of the information we need. As soon as we have everything, your 5-day turnaround begins.</p>
+                <div class="contact-detail">
+                    <div class="contact-detail-icon">&#9993;</div>
+                    <span>angus@evtransition.uk</span>
+                </div>
+            </div>
+            <form class="contact-form" action="https://formspree.io/f/xrerlego" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="postcode">Postcode</label>
+                    <input type="text" id="postcode" name="postcode" required>
+                </div>
+                <div class="form-group">
+                    <label for="property">Property Type</label>
+                    <select id="property" name="property" required>
+                        <option value="" disabled selected>Select...</option>
+                        <option>Detached house</option>
+                        <option>Semi-detached house</option>
+                        <option>Terraced house</option>
+                        <option>Bungalow</option>
+                        <option>Flat / Apartment</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="interest">What are you most interested in?</label>
+                    <select id="interest" name="interest">
+                        <option value="" disabled selected>Select...</option>
+                        <option>Reducing my energy bills</option>
+                        <option>Solar panels</option>
+                        <option>Battery storage</option>
+                        <option>EV charging</option>
+                        <option>Tariff advice</option>
+                        <option>All of the above</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Anything else we should know?</label>
+                    <textarea id="message" name="message" placeholder="E.g. I already have solar, I'm getting an EV next month, etc."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Request My Assessment</button>
+            </form>
+        </div>
+    </div>
+</section>
